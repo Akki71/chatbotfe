@@ -1,28 +1,36 @@
 {
   "name": "chat-bot-fe",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint ."
   },
   "dependencies": {
-    "next": "16.1.4",
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-markdown": "^10.1.0",
-    "remark-gfm": "^4.0.1"
+    "@mapbox/mapbox-sdk": "^0.16.1",
+    "aos": "^2.3.4",
+    "bootstrap": "^5.3.7",
+    "date-fns": "^4.1.0",
+    "next": "latest",
+    "react": "latest",
+    "react-countup": "^6.5.3",
+    "react-day-picker": "^9.10.0",
+    "react-dom": "latest",
+    "react-range-slider-input": "^3.2.1",
+    "react-slick": "^0.30.3",
+    "react-toastify": "^11.0.5",
+    "slick-carousel": "^1.8.1"
   },
   "devDependencies": {
-    "@tailwindcss/postcss": "^4",
-    "@types/node": "^20",
-    "@types/react": "^19",
-    "@types/react-dom": "^19",
-    "eslint": "^9",
-    "eslint-config-next": "16.1.4",
-    "tailwindcss": "^4",
-    "typescript": "^5"
+    "@types/aos": "^3.0.7",
+    "@types/bootstrap": "^5.2.10",
+    "@types/node": "latest",
+    "@types/react": "latest",
+    "@types/react-slick": "^0.23.13",
+    "eslint": "latest",
+    "eslint-config-next": "latest",
+    "typescript": "latest"
   }
 }
