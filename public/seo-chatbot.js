@@ -14,7 +14,7 @@
     currentScript?.dataset.primaryColor || "#6366f1";
 
   const CHATBOT_URL =
-    `http://localhost:3001/chatbot` +
+    `http://r480gw4ogwocoo44g0og08k8.217.217.248.153.sslip.io/chatbot` +
     `?projectName=${encodeURIComponent(PROJECT_NAME)}` +
     `&projectId=${encodeURIComponent(PROJECT_ID)}` +
     `&color=${encodeURIComponent(PRIMARY_COLOR)}`;
