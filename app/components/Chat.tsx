@@ -51,7 +51,7 @@ export default function Chat(): JSX.Element {
         setLoading(true);
 
         try {
-            const res = await fetch("http://rocss80go8ko80csgwo8gocg.217.217.248.153.sslip.io/api/chat", {
+            const res = await fetch("https://chatapi.preproductiondemo.com/api/chat", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ question,projectId,projectName}),
