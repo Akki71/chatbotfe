@@ -14,7 +14,7 @@
     currentScript?.dataset.primaryColor || "#6366f1";
 
   const CHATBOT_URL =
-    `http://localhost:3000/chatbot` +
+    `https://chatbot.preproductiondemo.com/chatbot` +
     `?projectName=${encodeURIComponent(PROJECT_NAME)}` +
     `&projectId=${encodeURIComponent(PROJECT_ID)}` +
     `&color=${encodeURIComponent(PRIMARY_COLOR)}`;
