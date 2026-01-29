@@ -14,7 +14,7 @@
     currentScript?.dataset.primaryColor || "#6366f1";
 
   const CHATBOT_URL =
-    `https://chatbot.preproductiondemo.com/chatbot` +
+    `http://localhost:3000/chatbot` +
     `?projectName=${encodeURIComponent(PROJECT_NAME)}` +
     `&projectId=${encodeURIComponent(PROJECT_ID)}` +
     `&color=${encodeURIComponent(PRIMARY_COLOR)}`;
@@ -27,18 +27,21 @@
   button.innerHTML = "💬";
   button.title = `Chat with ${PROJECT_NAME}`;
 
-Object.assign(iframe.style, {
-  position: "fixed",
-  bottom: "90px",
-  right: "16px",
-  width: window.innerWidth < 640 ? "92%" : "420px",
-  height: window.innerWidth < 640 ? "75%" : "580px",
-  border: "none",
-  borderRadius: "16px",
-  background: "#ffffff",
-  boxShadow: "0 12px 30px rgba(0,0,0,0.25)",
-  zIndex: "999998",
-});
+  Object.assign(button.style, {
+    position: "fixed",
+    bottom: "24px",
+    right: "24px",
+    width: "64px",
+    height: "64px",
+    borderRadius: "50%",
+    background: PRIMARY_COLOR,
+    color: "#fff",
+    fontSize: "26px",
+    border: "none",
+    cursor: "pointer",
+    boxShadow: "0 10px 30px rgba(0,0,0,0.35)",
+    zIndex: "999999",
+  });
 
   function createIframe() {
     iframe = document.createElement("iframe");
