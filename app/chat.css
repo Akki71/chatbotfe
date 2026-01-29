@@ -1,30 +1,48 @@
-/* 🌐 Reset */
+/* =====================================================
+   🌐 GLOBAL RESET
+===================================================== */
 * {
   box-sizing: border-box;
 }
 
 html, body {
   margin: 0;
-  background: #ffffff;
+  padding: 0;
   height: 100%;
   font-family: Arial, sans-serif;
+  background: #ffffff;
 }
 
-/* 🧱 Main Chat Container */
+/* =====================================================
+   🎨 THEME VARIABLES (Set dynamically from JS)
+===================================================== */
+:root {
+  --primary-color: #6366f1;       /* Header + Button */
+  --user-bg: #4f46e5;             /* User bubble */
+  --assistant-bg: #f1f5f9;        /* Assistant bubble */
+  --assistant-text: #111827;
+  --border-color: #e5e7eb;
+}
+
+/* =====================================================
+   🧱 MAIN CHAT CONTAINER
+===================================================== */
 .chat-container {
   width: 100%;
   height: 100%;
-  background: #ffffff;
   display: flex;
   flex-direction: column;
+  background: #ffffff;
   overflow: hidden;
 }
 
-/* 🧭 Header */
+/* =====================================================
+   🧭 HEADER
+===================================================== */
 .chat-header {
   height: 56px;
   padding: 0 16px;
-  /* background: linear-gradient(135deg, #4f46e5, #6366f1); */
+  background: var(--primary-color);
   color: #ffffff;
   display: flex;
   align-items: center;
@@ -37,12 +55,14 @@ html, body {
   font-weight: 600;
 }
 
-/* 💬 Messages Area */
+/* =====================================================
+   💬 MESSAGE AREA
+===================================================== */
 .chat-box {
   flex: 1;
   padding: 12px;
   overflow-y: auto;
-  background: #f9fafb;
+  background: #f8fafc;
 }
 
 /* Scrollbar */
@@ -54,45 +74,56 @@ html, body {
   border-radius: 10px;
 }
 
-/* 💬 Message Bubble */
+/* =====================================================
+   💬 CHAT BUBBLES
+===================================================== */
 .chat-bubble {
   max-width: 80%;
   padding: 10px 12px;
-  border-radius: 12px;
+  border-radius: 14px;
   margin-bottom: 10px;
   font-size: 14px;
-  line-height: 1.4;
+  line-height: 1.45;
   word-wrap: break-word;
 }
 
-/* User */
+/* User Bubble */
 .chat-bubble.user {
-  background: #4f46e5;
+  background: var(--user-bg);
   color: #ffffff;
   margin-left: auto;
+  border-bottom-right-radius: 4px;
 }
 
-/* Assistant */
+/* Assistant Bubble */
 .chat-bubble.assistant {
-  background: #e5e7eb;
-  color: #111827;
+  background: var(--assistant-bg);
+  color: var(--assistant-text);
+  margin-right: auto;
+  border-bottom-left-radius: 4px;
 }
 
-/* 🔗 Links */
+/* =====================================================
+   🔗 LINKS INSIDE CHAT
+===================================================== */
 .chat-link {
-  color: #4f46e5;
+  color: var(--primary-color);
+  font-weight: 500;
   text-decoration: underline;
 }
+
 .chat-link:hover {
-  color: #1d4ed8;
+  opacity: 0.9;
 }
 
-/* ✍️ Input Area */
+/* =====================================================
+   ✍️ INPUT AREA
+===================================================== */
 .chat-input {
   padding: 12px;
   display: flex;
   gap: 10px;
-  border-top: 1px solid #e5e7eb;
+  border-top: 1px solid var(--border-color);
   background: #ffffff;
 }
 
@@ -108,7 +139,7 @@ html, body {
 }
 
 .chat-input textarea:focus {
-  border-color: #6366f1;
+  border-color: var(--primary-color);
 }
 
 .chat-input textarea::placeholder {
@@ -118,7 +149,7 @@ html, body {
 /* Send Button */
 .chat-input button {
   min-width: 90px;
-  background: #6366f1;
+  background: var(--primary-color);
   color: #ffffff;
   border: none;
   border-radius: 8px;
@@ -129,4 +160,50 @@ html, body {
 .chat-input button:disabled {
   opacity: 0.6;
   cursor: not-allowed;
+}
+
+/* =====================================================
+   ⏳ LOADING MESSAGE
+===================================================== */
+.chat-bubble.assistant.loading {
+  opacity: 0.7;
+  font-style: italic;
+}
+
+/* =====================================================
+   📱 MOBILE RESPONSIVE
+===================================================== */
+@media (max-width: 640px) {
+
+  .chat-header {
+    height: 52px;
+    padding: 0 12px;
+  }
+
+  .chat-title {
+    font-size: 14px;
+  }
+
+  .chat-box {
+    padding: 10px;
+  }
+
+  .chat-bubble {
+    max-width: 90%;
+    font-size: 13px;
+  }
+
+  .chat-input {
+    padding: 10px;
+  }
+
+  .chat-input textarea {
+    height: 38px;
+    font-size: 13px;
+  }
+
+  .chat-input button {
+    min-width: 72px;
+    font-size: 13px;
+  }
 }
