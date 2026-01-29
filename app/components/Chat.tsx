@@ -5,6 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import "../chat.css";
 import { JSX } from "react/jsx-runtime";
+import { askChatAPI } from "../services/api";
 
 type ChatMessage = {
     role: "user" | "assistant";
@@ -22,7 +23,7 @@ export default function Chat(): JSX.Element {
             : null;
     const [projectName, setProjectName] = useState("SEO AI Assistant");
     const [projectId, setProjectId] = useState("default");
-    const [primaryColor, setPrimaryColor] = useState("#000000");
+    const [primaryColor, setPrimaryColor] = useState("#868484");
 
 
     useEffect(() => {
@@ -36,45 +37,48 @@ export default function Chat(): JSX.Element {
 
         setProjectName(params.get("projectName") || "SEO AI Assistant");
         setProjectId(params.get("projectId") || "default");
-        setPrimaryColor(params.get("color") || "#000000");
+        setPrimaryColor(params.get("color") || "#868484");
     }, []);
 
     useEffect(() => {
         localStorage.setItem("seo_chat_history", JSON.stringify(messages));
     }, [messages]);
 
-    const askAI = async (): Promise<void> => {
-        if (!question.trim()) return;
+const askAI = async (): Promise<void> => {
+  if (!question.trim()) return;
 
-        setMessages(prev => [...prev, { role: "user", content: question }]);
-        setQuestion("");
-        setLoading(true);
+  const userQuestion = question;
 
-        try {
-            const res = await fetch("https://chatapi.preproductiondemo.com/api/chat", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ question,projectId,projectName}),
-            });
+  setMessages((prev) => [...prev, { role: "user", content: userQuestion }]);
+  setQuestion("");
+  setLoading(true);
 
-            const data: { answer: string } = await res.json();
+  try {
+    const data = await askChatAPI({
+      question: userQuestion,
+      projectId: "8",
+      projectName,
+    });
 
-            setMessages(prev => [
-                ...prev,
-                { role: "assistant", content: data.answer },
-            ]);
-        } catch {
-            setMessages(prev => [
-                ...prev,
-                {
-                    role: "assistant",
-                    content: "❌ Something went wrong. Please try again.",
-                },
-            ]);
-        } finally {
-            setLoading(false);
-        }
-    };
+    setMessages((prev) => [
+      ...prev,
+      { role: "assistant", content: data.answer },
+    ]);
+  } catch (error) {
+    console.error("Chat API Error:", error);
+
+    setMessages((prev) => [
+      ...prev,
+      {
+        role: "assistant",
+        content: "❌ Something went wrong. Please try again.",
+      },
+    ]);
+  } finally {
+    setLoading(false);
+  }
+};
+
 
     return (
         <>
