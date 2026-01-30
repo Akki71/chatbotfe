@@ -182,7 +182,7 @@ export default function Chat(): JSX.Element {
                     value={question}
                     onChange={(e) => setQuestion(e.target.value)}
                     onKeyDown={handleKeyDown}
-                    placeholder="Ask about products, medicines, offers..."
+                    placeholder="How can I help you today?"
                 />
 
                 <button onClick={askAI} disabled={loading}>
